@@ -3762,7 +3762,7 @@ window.Riode = {};
         Riode.initZoom();                                                       // Initialize zoom
         Riode.initNavFilter('.nav-filters .nav-filter');                      // Initialize navigation filters for blog, products
         Riode.initPopups();                                                     // Initialize popups: login, register, play video, newsletter popup
-        Riode.initPurchasedMinipopup();                                         // Initialize minipopup for purchased event
+        // Riode.initPurchasedMinipopup();                                         // Initialize minipopup for purchased event
         Riode.initScrollTopButton();                                            // Initialize scroll top button.
         Riode.floatSVG('.float-svg');                                         // Floating SVG
         Riode.initShowVendorSearch('.toolbox .form-toggle-btn');              // Initialize show vendor search form
