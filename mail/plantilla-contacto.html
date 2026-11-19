@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuevo mensaje de contacto</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f6f8fa; font-family:Arial, Helvetica, sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f6f8fa;">
+    <tr>
+        <td align="center" style="padding:30px 15px;">
+            <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px; width:100%; background-color:#ffffff; border:1px solid #eceff2;">
+                <!-- Encabezado -->
+                <tr>
+                    <td style="background-color:#1c2b36; padding:24px 32px;">
+                        <p style="margin:0; color:#5dd6ee; font-size:12px; font-weight:bold; letter-spacing:2px; text-transform:uppercase;">Dataenging C.A.</p>
+                        <h1 style="margin:6px 0 0; color:#ffffff; font-size:22px; font-weight:bold;">Nuevo mensaje desde el sitio web</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:4px; background-color:#1592b0; line-height:4px; font-size:4px;">&nbsp;</td>
+                </tr>
+                <!-- Intro -->
+                <tr>
+                    <td style="padding:28px 32px 8px;">
+                        <p style="margin:0; color:#444444; font-size:14px; line-height:22px;">
+                            Se recibió una solicitud a través del formulario de <strong>Contáctenos</strong> el <strong>{{fecha}}</strong>.
+                        </p>
+                    </td>
+                </tr>
+                <!-- Datos -->
+                <tr>
+                    <td style="padding:16px 32px;">
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                            <tr>
+                                <td width="130" style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#c28b12; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Nombre</td>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#222222; font-size:14px;">{{nombre}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#c28b12; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Empresa</td>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#222222; font-size:14px;">{{empresa}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#c28b12; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Correo</td>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; font-size:14px;"><a href="mailto:{{correo}}" style="color:#1592b0; text-decoration:none;">{{correo}}</a></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#c28b12; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Teléfono</td>
+                                <td style="padding:10px 12px; border-bottom:1px solid #eceff2; color:#222222; font-size:14px;">{{telefono}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Mensaje -->
+                <tr>
+                    <td style="padding:8px 32px 24px;">
+                        <p style="margin:0 0 8px; color:#c28b12; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Mensaje</p>
+                        <div style="padding:16px; background-color:#eaf7fb; border-left:4px solid #1592b0; color:#333333; font-size:14px; line-height:22px;">{{mensaje}}</div>
+                    </td>
+                </tr>
+                <!-- Botón responder -->
+                <tr>
+                    <td align="center" style="padding:0 32px 32px;">
+                        <a href="mailto:{{correo}}?subject=Re:%20Su%20consulta%20a%20Dataenging" style="display:inline-block; padding:12px 28px; background-color:#1592b0; color:#ffffff; font-size:14px; font-weight:bold; text-decoration:none; border-radius:3px;">Responder al cliente</a>
+                    </td>
+                </tr>
+                <!-- Pie -->
+                <tr>
+                    <td style="background-color:#f6f8fa; padding:18px 32px; border-top:1px solid #eceff2;">
+                        <p style="margin:0; color:#888888; font-size:11px; line-height:18px;">
+                            Mensaje generado automáticamente por el formulario de dataenging.<br>
+                            IP de origen: {{ip}}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

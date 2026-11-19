@@ -96,17 +96,21 @@
                         <p><i class="fas fa-clock text-primary mr-2"></i> Lun - Vie 8:00 - 18:00 · Emergencias 24/7</p>
                     </div>
                     <div class="col-lg-7">
-                        <form class="contact-form" action="#" onsubmit="this.querySelector('.form-notice').hidden = false; return false;">
+                        <form class="contact-form" id="contact-form" action="enviar-contacto.php" method="post" novalidate>
                             <div class="row">
-                                <div class="col-md-6"><label for="nombre">Nombre</label><input id="nombre" type="text" required></div>
-                                <div class="col-md-6"><label for="empresa">Empresa</label><input id="empresa" type="text"></div>
-                                <div class="col-md-6"><label for="correo">Correo</label><input id="correo" type="email" required></div>
-                                <div class="col-md-6"><label for="telefono">Teléfono</label><input id="telefono" type="tel"></div>
+                                <div class="col-md-6"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" maxlength="100" required></div>
+                                <div class="col-md-6"><label for="empresa">Empresa</label><input id="empresa" name="empresa" type="text" maxlength="150"></div>
+                                <div class="col-md-6"><label for="correo">Correo</label><input id="correo" name="correo" type="email" maxlength="150" required></div>
+                                <div class="col-md-6"><label for="telefono">Teléfono</label><input id="telefono" name="telefono" type="tel" maxlength="40"></div>
+                            </div>
+                            <!-- Honeypot anti-spam: debe quedar vacío -->
+                            <div style="position:absolute; left:-9999px;" aria-hidden="true">
+                                <label for="sitio_web">No completar</label><input id="sitio_web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
                             </div>
                             <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" rows="5" required placeholder="Describa su equipo (marca, amperaje) y lo que necesita"></textarea>
+                            <textarea id="mensaje" name="mensaje" rows="5" maxlength="5000" required placeholder="Describa su equipo (marca, amperaje) y lo que necesita"></textarea>
                             <button type="submit" class="btn btn-primary mt-4">Enviar mensaje</button>
-                            <p class="form-notice text-primary" hidden>Gracias. Formulario de prueba: aún no envía datos.</p>
+                            <p class="form-notice" role="status" hidden></p>
                         </form>
                     </div>
                 </div>
@@ -183,6 +187,48 @@
     <script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
     <script src="js/main.min.js"></script>
+    <script>
+        ( function () {
+            var form = document.getElementById( 'contact-form' );
+            var aviso = form.querySelector( '.form-notice' );
+            var boton = form.querySelector( 'button[type="submit"]' );
+
+            function mostrar( texto, ok ) {
+                aviso.textContent = texto;
+                aviso.style.color = ok ? '#2a9a3c' : '#c0392b';
+                aviso.hidden = false;
+            }
+
+            form.addEventListener( 'submit', function ( ev ) {
+                ev.preventDefault();
+                if ( !form.checkValidity() ) {
+                    form.reportValidity();
+                    return;
+                }
+                boton.disabled = true;
+                boton.textContent = 'Enviando...';
+                aviso.hidden = true;
+
+                fetch( form.action, { method: 'POST', body: new FormData( form ) } )
+                    .then( function ( r ) { return r.json(); } )
+                    .then( function ( data ) {
+                        if ( data.ok ) {
+                            form.reset();
+                            mostrar( 'Gracias. Su mensaje fue enviado; le responderemos en menos de 24 horas hábiles.', true );
+                        } else {
+                            mostrar( data.error || 'No se pudo enviar el mensaje.', false );
+                        }
+                    } )
+                    .catch( function () {
+                        mostrar( 'Error de conexión. Intente de nuevo o escríbanos a dataenging@gmail.com.', false );
+                    } )
+                    .then( function () {
+                        boton.disabled = false;
+                        boton.textContent = 'Enviar mensaje';
+                    } );
+            } );
+        } )();
+    </script>
 </body>
 
 </html>
